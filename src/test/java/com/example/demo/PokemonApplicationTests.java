@@ -47,7 +47,7 @@ public class PokemonApplicationTests {
     }
 
     @Test
-    @WithMockUser(username = "gerni", password = "gitarasiema")
+    @WithMockUser(username = "username", password = "password")
     public void authorizedUserCanEnterTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/pokemon"))
                 .andExpect(status().isOk());
@@ -57,8 +57,8 @@ public class PokemonApplicationTests {
     public void signUpValidTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/register")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"login\": \"rekin\", \"username\": \"rekin1\"," +
-                        " \"email\": \"rekin@gmail.com\", \"password\": \"piwo123\"}"))
+                .content("{\"login\": \"user\", \"username\": \"username\"," +
+                        " \"email\": \"user@gmail.com\", \"password\": \"password\"}"))
                 .andExpect(status().isCreated());
     }
 
@@ -66,8 +66,8 @@ public class PokemonApplicationTests {
     public void signUpInvalidTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/register")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"login\": \"rekin\", \"username\": \"rekin1\"," +
-                                " \"email\": \"rekin@gmail.com\", \"password\": \"\"}"))
+                        .content("{\"login\": \"user\", \"username\": \"username\"," +
+                                " \"email\": \"user@gmail.com\", \"password\": \"\"}"))
                 .andExpect(status().isBadRequest());
     }
 
@@ -75,7 +75,7 @@ public class PokemonApplicationTests {
     public void authenticateNonExistentUserTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/authenticate")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"login\": \"rekin\", \"password\": \"piwo123\"}"))
+                .content("{\"login\": \"user\", \"password\": \"password\"}"))
                 .andExpect(status().isBadRequest());
     }
 

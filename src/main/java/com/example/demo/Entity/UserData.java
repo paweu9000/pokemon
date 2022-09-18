@@ -23,10 +23,16 @@ public class UserData {
     @Column(name = COLUMN_PREFIX + "id", unique = true)
     private UUID id;
     @Column(unique = true)
+    @NonNull
+    @NotBlank(message = "login cannot be blank")
     private String login;
     @Column(unique = true)
+    @NonNull
+    @NotBlank(message = "username cannot be blank")
     private String username;
     @Column(unique = true)
+    @NonNull
+    @NotBlank(message = "email cannot be blank")
     private String email;
     @Column(nullable = false)
     @NonNull
